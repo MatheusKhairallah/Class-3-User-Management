@@ -30,3 +30,15 @@ var photo = document.querySelector("#exampleInputFile");
 /*Está sendo armazenado dentro da variável "admin" o valor da ID ("#exampleInputAdmin"),
 que foi procurada e selecionada pelo querySelector dentro do documento*/
 var admin = document.querySelector("#exampleInputAdmin");
+
+//<------------------------------------------------------------------------------------->
+
+//Usando ForEach
+
+var fields = document.querySelectorAll("#form-user-create [name]");
+
+fields.forEach(function(field, index) {
+
+    console.log(field.name, index);
+
+});
