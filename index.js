@@ -1,6 +1,6 @@
 //Usando variáveis e seletores
 
-var name = document.querySelector("#exampleInputName");
+/*var name = document.querySelector("#exampleInputName");
 
 var gender = document.querySelectorAll("#form-user-create [name=gender]:checked");
 
@@ -14,13 +14,15 @@ var password = document.querySelector("#exampleInputPassword");
 
 var photo = document.querySelector("#exampleInputFile");
 
-var admin = document.querySelector("#exampleInputAdmin");
+var admin = document.querySelector("#exampleInputAdmin");*/
 
 //<------------------------------------------------------------------------------------->
 
-//Usando ForEach; If e Else
+//Usando ForEach; If e Else; Json
 
 var fields = document.querySelectorAll("#form-user-create [name]");
+
+var user = {};
 
 fields.forEach(function(field, index) {
 
@@ -28,16 +30,16 @@ fields.forEach(function(field, index) {
 
         if (field.checked == true) {
 
-            console.log("Sim", field);
+            user[field.name] = field.value;
 
         }
 
     } else {
 
-        console.log("Não");
+        user[field.name] = field.value;
 
     }
 
-    //console.log(field.name, index);
-
 });
+
+console.log(user);
