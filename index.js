@@ -18,28 +18,34 @@ var admin = document.querySelector("#exampleInputAdmin");*/
 
 //<------------------------------------------------------------------------------------->
 
-//Usando ForEach; If e Else; Json
+//Usando ForEach; If e Else; Json; Eventos
 
 var fields = document.querySelectorAll("#form-user-create [name]");
 
 var user = {};
 
-fields.forEach(function(field, index) {
+document.getElementById("form-user-create").addEventListener("submit", function(event) {
 
-    if (field.name == "gender") {
+    event.preventDefault();
+    
+    fields.forEach(function(field, index) {
 
-        if (field.checked == true) {
-
+        if (field.name == "gender") {
+    
+            if (field.checked == true) {
+    
+                user[field.name] = field.value;
+    
+            }
+    
+        } else {
+    
             user[field.name] = field.value;
-
+    
         }
-
-    } else {
-
-        user[field.name] = field.value;
-
-    }
+    
+    });
+    
+    console.log(user);
 
 });
-
-console.log(user);
