@@ -7,6 +7,7 @@ class UserController {
         this.tableEl = document.getElementById(tableId);
         this.onSubmit();
         this.onEdit();
+        this.selectAll();
 
     }
 
@@ -97,6 +98,8 @@ class UserController {
                 (content) => {
 
                     values.photo = content;
+
+                    this.insert(values);
 
                     this.addLine(values);
 
@@ -200,6 +203,46 @@ class UserController {
         );
 
     }
+
+    getusersStorage () {
+
+        let users = [];
+
+        if (sessionStorage.getItem("users")) {
+
+            users = JSON.parse(sessionStorage.getItem("users"));
+
+        }
+
+        return users
+
+    }
+
+    selectAll() {
+       
+        let users = this.getusersStorage();
+        
+        users.forEach(dataUser => {
+
+            let user = new User();
+
+            user.loadFromJSON(dataUser);
+        
+            this.addLine(user);
+
+        })
+
+    }
+
+    insert(data) {
+
+        let users = this.getusersStorage();
+
+        users.push(data);
+
+        sessionStorage.setItem("users", JSON.stringify(users));
+
+    }
     
     addLine(dataUser) {
 
@@ -231,9 +274,9 @@ class UserController {
 
     addEventsTr(tr) {
 
-        tr.querySelector(".btn-delete").addEventListener("click", e => {
+        tr.querySelector(".btn-delete").addEventListener("click", (e) => {
 
-            if (confirm("Deseja realmente excluir?")) {
+            if(confirm("Deseja relamente excluir?")) {
 
                 tr.remove();
 
